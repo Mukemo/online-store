@@ -19,5 +19,6 @@ public class RamMemoryCard {
     private Long id;
     private String name;
     @ManyToOne
+    @JoinColumn(name = "ram_id")
     private Laptop laptops;
 }

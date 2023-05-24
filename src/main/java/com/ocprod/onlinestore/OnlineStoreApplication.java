@@ -31,40 +31,22 @@ public class OnlineStoreApplication {
 	CommandLineRunner saveData(@Autowired LaptopRepository laptopRepository, @Autowired RamMemoryCardRepository ramMemoryCardRepository){
 		return args -> {
 
-			List<RamMemoryCard> ramMemoryCards = new ArrayList<>();
-
-			RamMemoryCard gb2 = new RamMemoryCard();
-			gb2.setName("2 GB Ram");
-			ramMemoryCardRepository.save(gb2);
-
-			RamMemoryCard gb4 = new RamMemoryCard();
-			gb4.setName("4 GB Ram");
-			ramMemoryCardRepository.save(gb4);
-
-			RamMemoryCard gb8 = new RamMemoryCard();
-			gb8.setName("8 GB Ram");
-			ramMemoryCardRepository.save(gb8);
-			ramMemoryCards.addAll(Arrays.asList(gb2, gb4, gb8));
-
 			Laptop macIntosh = new Laptop();
 			macIntosh.setAvailableQty(10);
 			macIntosh.setModelName("Mac Book air");
 			macIntosh.setPrice(1000.0);
-			macIntosh.setRamMemoryCard(ramMemoryCards);
 			laptopRepository.save(macIntosh);
 
 			Laptop lonovo = new Laptop();
 			lonovo.setAvailableQty(8);
 			lonovo.setModelName("Lenovo");
 			lonovo.setPrice(800.0);
-			lonovo.setRamMemoryCard(ramMemoryCards);
 			laptopRepository.save(lonovo);
 
 			Laptop acer = new Laptop();
 			acer.setAvailableQty(17);
 			acer.setModelName("Acer");
 			acer.setPrice(500.0);
-			acer.setRamMemoryCard(ramMemoryCards);
 
 			laptopRepository.save(acer);
 
@@ -72,15 +54,34 @@ public class OnlineStoreApplication {
 			dell.setAvailableQty(10);
 			dell.setModelName("Acer");
 			dell.setPrice(500.0);
-			dell.setRamMemoryCard(ramMemoryCards);
+
 			laptopRepository.save(dell);
 
 			Laptop hp = new Laptop();
 			hp.setAvailableQty(26);
 			hp.setModelName("Acer");
 			hp.setPrice(700.0);
-			hp.setRamMemoryCard(ramMemoryCards);
 			laptopRepository.save(hp);
+
+			RamMemoryCard gb2 = new RamMemoryCard();
+			gb2.setName("2 GB Ram");
+			gb2.setLaptops(lonovo);
+			ramMemoryCardRepository.save(gb2);
+
+			RamMemoryCard gb4 = new RamMemoryCard();
+			gb4.setName("4 GB Ram");
+			gb4.setLaptops(dell);
+			ramMemoryCardRepository.save(gb4);
+
+			RamMemoryCard gb8 = new RamMemoryCard();
+			gb8.setName("8 GB Ram");
+			gb8.setLaptops(acer);
+			ramMemoryCardRepository.save(gb8);
+
+			RamMemoryCard gb16 = new RamMemoryCard();
+			gb16.setName("16 GB Ram");
+			gb16.setLaptops(macIntosh);
+			ramMemoryCardRepository.save(gb16);
 
 		};
 	}

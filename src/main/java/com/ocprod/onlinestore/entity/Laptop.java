@@ -16,6 +16,6 @@ public class Laptop {
     private String modelName;
     private int availableQty;
     private double price;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<RamMemoryCard> ramMemoryCard;
 }
