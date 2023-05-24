@@ -13,6 +13,6 @@ public class InvoiceService implements IInvoiceService{
     private RestTemplate restTemplate;
     @Override
     public void payment(InvoiceForm invoiceForm, String urlPaymentService) {
-
+        log.info("Invoice service called {}", invoiceForm);
     }
 }

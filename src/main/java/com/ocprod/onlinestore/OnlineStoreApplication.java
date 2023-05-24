@@ -13,6 +13,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -29,60 +30,57 @@ public class OnlineStoreApplication {
 	@Bean
 	CommandLineRunner saveData(@Autowired LaptopRepository laptopRepository, @Autowired RamMemoryCardRepository ramMemoryCardRepository){
 		return args -> {
+
+			List<RamMemoryCard> ramMemoryCards = new ArrayList<>();
+
+			RamMemoryCard gb2 = new RamMemoryCard();
+			gb2.setName("2 GB Ram");
+			ramMemoryCardRepository.save(gb2);
+
+			RamMemoryCard gb4 = new RamMemoryCard();
+			gb4.setName("4 GB Ram");
+			ramMemoryCardRepository.save(gb4);
+
+			RamMemoryCard gb8 = new RamMemoryCard();
+			gb8.setName("8 GB Ram");
+			ramMemoryCardRepository.save(gb8);
+			ramMemoryCards.addAll(Arrays.asList(gb2, gb4, gb8));
+
 			Laptop macIntosh = new Laptop();
 			macIntosh.setAvailableQty(10);
 			macIntosh.setModelName("Mac Book air");
 			macIntosh.setPrice(1000.0);
+			macIntosh.setRamMemoryCard(ramMemoryCards);
 			laptopRepository.save(macIntosh);
 
 			Laptop lonovo = new Laptop();
-			lonovo.setAvailableQty(10);
+			lonovo.setAvailableQty(8);
 			lonovo.setModelName("Lenovo");
 			lonovo.setPrice(800.0);
+			lonovo.setRamMemoryCard(ramMemoryCards);
 			laptopRepository.save(lonovo);
 
 			Laptop acer = new Laptop();
-			acer.setAvailableQty(10);
+			acer.setAvailableQty(17);
 			acer.setModelName("Acer");
 			acer.setPrice(500.0);
+			acer.setRamMemoryCard(ramMemoryCards);
+
 			laptopRepository.save(acer);
 
 			Laptop dell = new Laptop();
 			dell.setAvailableQty(10);
 			dell.setModelName("Acer");
 			dell.setPrice(500.0);
+			dell.setRamMemoryCard(ramMemoryCards);
 			laptopRepository.save(dell);
 
 			Laptop hp = new Laptop();
-			hp.setAvailableQty(10);
+			hp.setAvailableQty(26);
 			hp.setModelName("Acer");
 			hp.setPrice(700.0);
+			hp.setRamMemoryCard(ramMemoryCards);
 			laptopRepository.save(hp);
-
-
-			RamMemoryCard gb2 = new RamMemoryCard();
-			gb2.setName("2 GB Ram");
-			List<Laptop> gb2Ram = new ArrayList<>();
-			gb2Ram.add(hp);
-			gb2.setLaptops(gb2Ram);
-			ramMemoryCardRepository.save(gb2);
-
-			RamMemoryCard gb4 = new RamMemoryCard();
-			gb4.setName("4 GB Ram");
-			List<Laptop> gb4Ram = new ArrayList<>();
-			gb4Ram.add(lonovo);
-			gb4Ram.add(dell);
-			gb4.setLaptops(gb4Ram);
-			ramMemoryCardRepository.save(gb4);
-
-			RamMemoryCard gb8 = new RamMemoryCard();
-            gb8.setName("8 GB Ram");
-			List<Laptop> gb8Ram = new ArrayList<>();
-			gb8Ram.add(macIntosh);
-			gb8Ram.add(lonovo);
-			gb8Ram.add(acer);
-			gb8.setLaptops(gb8Ram);
-			ramMemoryCardRepository.save(gb8);
 
 		};
 	}

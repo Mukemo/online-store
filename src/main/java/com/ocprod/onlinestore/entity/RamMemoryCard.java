@@ -18,7 +18,6 @@ public class RamMemoryCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany
-    private List<Laptop> laptops;
-
+    @ManyToOne
+    private Laptop laptops;
 }

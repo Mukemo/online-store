@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,6 +16,6 @@ public class Laptop {
     private String modelName;
     private int availableQty;
     private double price;
-    @ManyToOne
-    private RamMemoryCard ramMemoryCard;
+    @OneToMany
+    private List<RamMemoryCard> ramMemoryCard;
 }

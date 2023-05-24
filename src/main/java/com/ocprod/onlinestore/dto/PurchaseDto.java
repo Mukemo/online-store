@@ -11,5 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 public class PurchaseDto {
-    private Laptop laptopList;
+    private String modelName;
+    private double totalAmount;
+    private int quantity;
 }
